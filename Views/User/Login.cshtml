@@ -1,0 +1,31 @@
+﻿@model PawsCare.Models.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+<section>
+    <div class="container container-medium">
+        <form class="form-horizontal login-form" action="/User/StartSession">
+            <div class="row">
+                <h2>Login</h2>
+
+                <div class="form-group  mb-3">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="" />
+                    <span asp-validation-for="Email" class="text-danger mt-1"></span>
+                </div>
+
+                <div class="form-group  mb-3">
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" class="" type="password" />
+                    <span asp-validation-for="Password" class="text-danger mt-1"></span>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-default w-100 text-white" />
+            </div>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        </form>
+    </div>
+</section>
