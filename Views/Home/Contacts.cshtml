@@ -1,0 +1,109 @@
+﻿@model PawsCare.Models.Contact
+@{
+    ViewData["Title"] = "Contacts";
+}
+<div class="banner-wrapper">
+    <img src="~/uploads/contact-banner.jpg" class="img-fluid" />
+    <div class="banner-content">
+        <h1>Contacts</h1>
+    </div>
+</div>
+
+<div class="container container-medium" style="margin-bottom:150px;">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="subtitle">get in touch</div>
+            <h2>Stay Connected</h2>
+            <p class="mb-4">Ullamcorper malesuada proin libero nunc. Tempor commodo ullamcorper a lacus vestibulum sed.</p>
+            <div class="infobox-wrapper">
+
+                <div class="infobox d-flex align-items-center">
+                    <div class="circle">
+                        <svg enable-background="new 0 0 24 24" height="24px" version="1.1" viewBox="0 0 24 24" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M11.513,12.38c-2.117,0-3.835-1.729-3.835-3.862c0-2.135,1.718-3.863,3.835-3.863s3.835,1.729,3.835,3.863  C15.348,10.65,13.63,12.38,11.513,12.38 M11.513,0C6.825,0,3.025,3.827,3.025,8.549c0,4.46,3.844,10.213,6.411,13.014  c0.959,1.045,2.076,2.454,2.076,2.454s1.2-1.417,2.229-2.493C16.306,18.84,20,13.451,20,8.549C20,3.827,16.2,0,11.513,0" /></svg>
+                    </div>
+                    <div class="content">
+                            <h6 class="mb-1">Our Address</h6>
+                            <p class="m-0">92 Bowery St. NY 10013, USA</p>
+                   </div>
+                </div>
+
+                <div class="infobox d-flex align-items-center">
+                    <div class="circle">
+                        <a href="mailto:pawscare@mail.com" class="full-box-link"></a>
+                        <svg width="24" height="24" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg"><title /><path d="M48,0a48,48,0,0,0,0,96,6,6,0,0,0,0-12A36,36,0,1,1,84,48V66a6,6,0,0,1-12,0V48A24,24,0,1,0,48,72a23.7365,23.7365,0,0,0,12.2549-3.4783A17.9586,17.9586,0,0,0,96,66V48A48.0474,48.0474,0,0,0,48,0Zm0,60A12,12,0,1,1,60,48,12.0081,12.0081,0,0,1,48,60Z" />
+                       </svg>
+                    </div>
+                    
+                    <div class="content">
+                        <h6 class="mb-1">Our Email</h6>
+                        <p class="m-0">pawscare@mail.com</p>
+                    </div>
+                </div>
+
+                <div class="infobox d-flex align-items-center">
+                    <div class="circle">
+                        <a href="tel:+180055580535" class="full-box-link"></a>
+                        <svg width="24" height="24" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M511.2 387l-23.25 100.8c-3.266 14.25-15.79 24.22-30.46 24.22C205.2 512 0 306.8 0 54.5c0-14.66 9.969-27.2 24.22-30.45l100.8-23.25C139.7-2.602 154.7 5.018 160.8 18.92l46.52 108.5c5.438 12.78 1.77 27.67-8.98 36.45L144.5 207.1c33.98 69.22 90.26 125.5 159.5 159.5l44.08-53.8c8.688-10.78 23.69-14.51 36.47-8.975l108.5 46.51C506.1 357.2 514.6 372.4 511.2 387z" />
+                       </svg>
+                    </div>
+                   
+                   <div class="content">
+                        <h6 class="mb-1">Our Phone</h6>
+                        <p class="mb-0">+1 800 555 805 35</p>
+                   </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.7645167593187!2d23.806911876265453!3d38.00595279880908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1980f92be0d8d%3A0x337f3ad78faea31a!2sePets%26Co%20-%20Pet%20Shop!5e0!3m2!1sel!2sgr!4v1713258631009!5m2!1sel!2sgr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</div>
+
+<div class="contact-form-wrapper position-relative">
+
+    <img src="~/uploads/contact-img.png" class="img-fluid" />
+    <form class="container container-medium" action="/Home/SubmitContactForm" method="post">
+            <h2>Drop Us a Line</h2>
+            <div class="row">
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="" />
+                    <span asp-validation-for="Name" class="text-danger mt-1"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="mb-3">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="" />
+                    <span asp-validation-for="Email" class="text-danger mt-1"></span>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-4">
+                    <label asp-for="Message" class="control-label"></label>
+                    <textarea asp-for="Message"></textarea>
+                    <span asp-validation-for="Message" class="text-danger mt-1"></span>
+                </div>
+            </div>
+            <div class="col-3">
+                <button type="submit" class="btn-default">get in touch</button>
+            </div>
+            </div>
+      
+        </form>
+</div>
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success fixed" id="success-alert">
+        <div class="position-relative">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="document.getElementById('success-alert').style.display='none';">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            @TempData["SuccessMessage"]
+        </div>
+    </div>
+}
+
+

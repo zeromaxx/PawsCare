@@ -18,7 +18,7 @@
     @inject IHttpContextAccessor HttpContextAccessor
     <header>
         <nav class="bg-white">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-3">
                         <a class="navbar-brand" asp-controller="Home" asp-action="Index">
@@ -29,19 +29,25 @@
                         <div class="nav-links h-100">
                             <ul class="m-0 p-0 d-flex h-100 align-items-center">
                                 <li class="nav-item list-unstyled">
-                                    <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                                    <a class="nav-link @(Context.Request.Path == "/" ? "active-page" : "")" asp-controller="Home" asp-action="Index">Home</a>
                                 </li>
                                 @if (!User?.Identity?.IsAuthenticated ?? false)
                                 {
                                     <li class="nav-item list-unstyled">
-                                        <a class="nav-link" asp-controller="User" asp-action="Register">Register</a>
+                                        <a class="nav-link @(Context.Request.Path == "/User/Register" ? "active-page" : "")" asp-controller="User" asp-action="Register">Register</a>
                                     </li>
                                     <li class="nav-item list-unstyled">
-                                        <a class="nav-link" asp-controller="User" asp-action="Login">Login</a>
+                                        <a class="nav-link @(Context.Request.Path == "/User/Login" ? "active-page" : "")" asp-controller="User" asp-action="Login">Login</a>
+                                    </li>
+                                }
+                                @if (User?.Identity?.IsAuthenticated ?? true)
+                                {
+                                    <li class="nav-item list-unstyled">
+                                        <a class="nav-link" asp-controller="User" asp-action="Logout">Logout</a>
                                     </li>
                                 }
                                 <li class="nav-item list-unstyled">
-                                    <a class="nav-link" asp-controller="User" asp-action="Logout">Logout</a>
+                                    <a class="nav-link @(Context.Request.Path == "/Home/Contacts" ? "active-page" : "")" asp-controller="Home" asp-action="Contacts">Contacts</a>
                                 </li>
                             </ul>
                         </div>
@@ -51,7 +57,7 @@
         </nav>
     </header>
     <div class="">
-        <main role="main" class="pb-3">
+        <main role="main">
             @RenderBody()
         </main>
     </div>

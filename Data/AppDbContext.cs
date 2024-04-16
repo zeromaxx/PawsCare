@@ -10,6 +10,7 @@ namespace PawsCare.Data
             optionsBuilder.UseSqlite("Data Source=app.db");
         }
         public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Contact> Contacts { get; set; } = null!;
     }
 
 }
