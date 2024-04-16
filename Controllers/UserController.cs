@@ -7,6 +7,7 @@ using PawsCare.Data;
 using PawsCare.Models;
 using System.Security.Claims;
 using PawsCare.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PawsCare.Controllers
 {
@@ -17,12 +18,24 @@ namespace PawsCare.Controllers
         {
             _context = context;
         }
+        [AllowAnonymous]
         public IActionResult Register()
         {
+            if (User?.Identity?.IsAuthenticated == true)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
+        [AllowAnonymous]
         public IActionResult Login()
         {
+            if (User?.Identity?.IsAuthenticated == true)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
         public IActionResult Logout()

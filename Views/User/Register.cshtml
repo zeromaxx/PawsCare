@@ -3,39 +3,44 @@
 @{
     ViewData["Title"] = "Register";
 }
-
+<div class="banner-wrapper">
+    <img src="~/uploads/banner.jpg" class="img-fluid" />
+    <div class="banner-content">
+        <h1>My account</h1>
+    </div>
+</div>
 <section>
-    <div class="container container-small">
-        <form method="post" id="registrationForm" class="form-horizontal" action="/User/Store">
+    <div class="container container-medium">
+        <form method="post" class="form-horizontal register-form" action="/User/Store">
             <div class="row">
                 <h2 class="mb-2">Register a New Account</h2>
                 <div class="form-group mb-3">
-                    <label asp-for="Username" class="control-label mb-1"></label>
-                    <input asp-for="Username" class="form-control" />
+                    <label asp-for="Username" class="control-label"></label>
+                    <input asp-for="Username" />
                     <span asp-validation-for="Username" class="text-danger mt-1"></span>
                 </div>
 
                 <div class="form-group  mb-3">
-                    <label asp-for="Password" class="control-label mb-1"></label>
-                    <input asp-for="Password" class="form-control" type="password" />
+                    <label asp-for="Password" class="control-label"></label>
+                    <input asp-for="Password" type="password" />
                     <span asp-validation-for="Password" class="text-danger mt-1"></span>
                 </div>
 
                 <div class="form-group  mb-3">
-                    <label asp-for="Name" class="control-label mb-1"></label>
-                    <input asp-for="Name" class="form-control" />
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name"  />
                     <span asp-validation-for="Name" class="text-danger mt-1"></span>
                 </div>
 
                 <div class="form-group  mb-3">
-                    <label asp-for="Email" class="control-label mb-1"></label>
-                    <input asp-for="Email" class="form-control" />
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email"  />
                     <span asp-validation-for="Email" class="text-danger mt-1"></span>
                 </div>
 
             </div>
             <div class="form-group">
-                <input type="submit" value="Create Account" class="btn btn-primary w-100" />
+                <input type="submit" value="Create Account" class="btn-default text-white w-100" />
             </div>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @if (ViewBag.SuccessMessage != null)

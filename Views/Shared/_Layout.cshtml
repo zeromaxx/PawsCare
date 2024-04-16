@@ -13,6 +13,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
 </head>
 <body>
+    @using Microsoft.AspNetCore.Http
+    @using System.Security.Claims
+    @inject IHttpContextAccessor HttpContextAccessor
     <header>
         <nav class="bg-white">
             <div class="container">
@@ -28,12 +31,15 @@
                                 <li class="nav-item list-unstyled">
                                     <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
                                 </li>
-                                <li class="nav-item list-unstyled">
-                                    <a class="nav-link" asp-controller="User" asp-action="Register">Register</a>
-                                </li>
-                                <li class="nav-item list-unstyled">
-                                    <a class="nav-link" asp-controller="User" asp-action="Login">Login</a>
-                                </li>
+                                @if (!User?.Identity?.IsAuthenticated ?? false)
+                                {
+                                    <li class="nav-item list-unstyled">
+                                        <a class="nav-link" asp-controller="User" asp-action="Register">Register</a>
+                                    </li>
+                                    <li class="nav-item list-unstyled">
+                                        <a class="nav-link" asp-controller="User" asp-action="Login">Login</a>
+                                    </li>
+                                }
                                 <li class="nav-item list-unstyled">
                                     <a class="nav-link" asp-controller="User" asp-action="Logout">Logout</a>
                                 </li>
@@ -44,17 +50,17 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+  @*   <footer class="">
         <div class="container">
             &copy; 2024 - PawsCare - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer> *@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
