@@ -1,0 +1,28 @@
+﻿@model PawsCare.Models.Product
+@{
+	ViewData["Title"] = "Product Details";
+}
+
+<div class="product-details">
+	<div class="container container-medium">
+		<div class="row">
+			<div class="col-lg-6">
+				<img class="img-fluid" src="~/uploads/@Model.ImagePath" />
+			</div>
+			<div class="col-lg-6">
+				<h2>@Model.Name</h2>
+				<h3 class="price">&euro;<span class="ps-1">@Model.Price</span></h3>
+				<p>@Model.Description</p>
+				<hr />
+				<form class="d-flex justify-content-between">
+					<div class="quantity-wrapper">
+						<span class="icon minus"></span>
+						<span class="quantity">1</span>
+						<span class="icon plus"></span>
+					</div>
+					<button class="btn-default">add to cart</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

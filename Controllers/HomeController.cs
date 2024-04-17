@@ -18,7 +18,8 @@ namespace PawsCare.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var products = _context.Products.ToList();
+            return View(products);
         }
         public IActionResult Contacts()
         {

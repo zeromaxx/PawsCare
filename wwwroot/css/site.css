@@ -53,6 +53,12 @@ h2 {
     font-size: 42px;
     margin-bottom: 20px;
 }
+h4 {
+    font-weight: 400;
+    font-family: var(--font-paytone);
+    color: var(--main-color);
+    font-size: 22px;
+}
 h6 {
     font-weight: 600;
     font-family: var(--font-paytone);
@@ -216,4 +222,97 @@ label{
     bottom: 0;
     background: rgba(0, 0, 0, 0.3);
     z-index: 1;
+}
+.products-wrapper img{
+   border-top-right-radius:5px;
+   border-top-left-radius:5px;
+    display:block;
+}
+.products-wrapper .price{
+    color: var(--secondary-color);
+    font-size: 18px;
+    font-weight: bolder;
+}
+.product-info-wrapper {
+    background: #FCF9F4;
+}
+.products-wrapper .product-info {
+    padding: 15px 10px;
+    border-radius: 5px;
+}
+.cart-icon {
+    height: 50px;
+    width: 50px;
+    background: #ffffff;
+    box-shadow: 5px 3px 13px 0 rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    transition:all linear .2s;
+}
+.cart-icon svg {
+    fill:var(--secondary-color);
+}
+.cart-icon:hover{
+    background: var(--main-color);
+}
+.cart-icon:hover svg{
+    fill: white;
+}
+.product{
+    transition: all ease-in .2s;
+}
+.product:hover {
+    box-shadow: 12px 9px 38px 0 rgba(0, 0, 0, 0.1);
+}
+.minus, .plus {
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    width: 24px;
+    height: 24px;
+    background: #ffffff;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all linear .2s;
+}
+
+.minus:hover, .plus:hover {
+    background: var(--secondary-color);
+}
+.quantity-wrapper {
+    display: flex;
+    width: 120px;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding: 14px;
+    height: 60px;
+    line-height: 0;
+    border-radius: 5px;
+    background-color: #f9f4ea;
+}
+
+
+.minus:before {
+    font-weight: bold;
+    font-size: 24px;
+    content: '-';
+    color: var(--secondary-color);
+}
+
+.plus:before {
+    font-weight: bold;
+    font-size: 24px;
+    content: '+';
+    color: var(--secondary-color);
+}
+.icon:hover:before {
+    color: white;
+}
+.product-details .price {
+    color: var(--secondary-color);
+    font-weight: bold;
 }

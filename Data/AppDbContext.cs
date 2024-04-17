@@ -11,6 +11,7 @@ namespace PawsCare.Data
         }
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<Contact> Contacts { get; set; } = null!;
+        public DbSet<Product> Products { get; set; } = null!;
     }
 
 }
