@@ -1,13 +1,9 @@
 ﻿@model PawsCare.Models.Contact
 @{
     ViewData["Title"] = "Contacts";
+    ViewData["Banner1ImageUrl"] = "uploads/contact-banner.jpg";
 }
-<div class="banner-wrapper">
-    <img src="~/uploads/contact-banner.jpg" class="img-fluid" />
-    <div class="banner-content">
-        <h1>Contacts</h1>
-    </div>
-</div>
+@await Html.PartialAsync("_Banner");
 
 <div class="container container-medium" style="margin-bottom:150px;">
     <div class="row">

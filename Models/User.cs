@@ -14,5 +14,7 @@ namespace PawsCare.Models
         public string Name { get; set; } = string.Empty;
         [Required]
         public string Email { get; set; } = string.Empty;
-    }
+		public List<Cart> Carts { get; set; } = new List<Cart>();
+       
+	}
 }

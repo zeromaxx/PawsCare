@@ -1,0 +1,16 @@
+﻿@model PawsCare.Models.Cart
+
+<div>
+    <h3>Cart Details</h3>
+    @if (Model.CartItems != null && Model.CartItems.Any())
+    {
+        foreach (var item in Model.CartItems)
+        {
+            <p>@item.Product.Name - @item.Quantity</p>
+        }
+    }
+    else
+    {
+        <p>Your cart is empty!</p>
+    }
+</div>

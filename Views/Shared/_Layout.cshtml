@@ -17,6 +17,7 @@
     @using System.Security.Claims
     @inject IHttpContextAccessor HttpContextAccessor
     <header>
+        @await Component.InvokeAsync("Menu")
         <nav class="bg-white">
             <div class="container-fluid">
                 <div class="row">

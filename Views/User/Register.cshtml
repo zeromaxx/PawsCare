@@ -2,13 +2,9 @@
 
 @{
     ViewData["Title"] = "Register";
+    ViewData["Banner1ImageUrl"] = "uploads/banner.jpg";
 }
-<div class="banner-wrapper">
-    <img src="~/uploads/banner.jpg" class="img-fluid" />
-    <div class="banner-content">
-        <h1>My account</h1>
-    </div>
-</div>
+@await Html.PartialAsync("_Banner");
 <section>
     <div class="container container-medium">
         <form method="post" class="form-horizontal register-form" action="/User/Store">

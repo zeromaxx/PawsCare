@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using PawsCare.Data;
+using PawsCare.Interfaces;
+using PawsCare.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +21,8 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
                 options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
                 options.Cookie.HttpOnly = true;
             });
+
+builder.Services.AddScoped<ICartService, CartService>();
 
 var app = builder.Build();
 

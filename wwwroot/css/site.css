@@ -316,3 +316,6 @@ label{
     color: var(--secondary-color);
     font-weight: bold;
 }
+.quantity{
+    border: 0;
+}

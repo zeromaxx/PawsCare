@@ -1,9 +1,10 @@
 ﻿@model PawsCare.Models.Product
 @{
-	ViewData["Title"] = "Product Details";
+	ViewData["Title"] = @Model.Name;
+	ViewData["Banner1ImageUrl"] = "uploads/banner.jpg";
 }
-
-<div class="product-details">
+@await Html.PartialAsync("_Banner");
+<div class="product-details mb-5">
 	<div class="container container-medium">
 		<div class="row">
 			<div class="col-lg-6">
@@ -12,17 +13,59 @@
 			<div class="col-lg-6">
 				<h2>@Model.Name</h2>
 				<h3 class="price">&euro;<span class="ps-1">@Model.Price</span></h3>
-				<p>@Model.Description</p>
+				<p class="mb-4">@Model.Description</p>
 				<hr />
-				<form class="d-flex justify-content-between">
+				<form id="addToCartForm" class="d-flex justify-content-between mt-4">
 					<div class="quantity-wrapper">
 						<span class="icon minus"></span>
-						<span class="quantity">1</span>
+						<span class="quantity" id="quantity">1</span>
 						<span class="icon plus"></span>
+						<input type="hidden" id="productId" value="@Model.Id"/>
 					</div>
-					<button class="btn-default">add to cart</button>
+					<button type="submit" class="btn-default">add to cart</button>
 				</form>
 			</div>
 		</div>
 	</div>
 </div>
+<script>
+	const addToCartForm = document.getElementById("addToCartForm");
+	const quantity = document.querySelector('.quantity');
+	const productId = document.getElementById('productId');
+	const minusButton = document.querySelector('.minus');
+	const plusButton = document.querySelector('.plus');
+
+	function decreaseQuantity() {
+		let currentQuantity = parseInt(quantity.textContent, 10);
+		if (currentQuantity > 1) {
+			quantity.textContent = currentQuantity - 1;
+		}
+	}
+
+	function increaseQuantity() {
+		let currentQuantity = parseInt(quantity.textContent, 10);
+		quantity.textContent = currentQuantity + 1;
+	}
+
+	minusButton.addEventListener('click', decreaseQuantity);
+	plusButton.addEventListener('click', increaseQuantity);
+	
+	addToCartForm.addEventListener("submit", function (e) {
+		const formData = {
+			quantity: Number(quantity.textContent),
+			productId: Number(productId.value),
+		};
+		e.preventDefault();
+		fetch("/Products/AddToCart", {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(formData)
+		})
+		.then(response => response.json())
+		.then(data => {
+			console.log(data);
+		})
+	})
+</script>
