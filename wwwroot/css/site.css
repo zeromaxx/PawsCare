@@ -1,11 +1,15 @@
 :root {
     --main-color: #564741;
     --secondary-color: #f69946;
+    --grey-color: #898988;
     --font-paytone: "Paytone One";
 }
 
 body {
     font-family: "Nunito", sans-serif;
+}
+a{
+    text-decoration:none;
 }
 header {
     box-shadow: 6px 6px 9px rgba(0, 0, 0, 0.2);
@@ -15,6 +19,12 @@ header {
 }
 .container.container-medium {
     max-width: 1170px;
+}
+.main-color {
+    color: var(--main-color);
+}
+.secondary-color{
+    color:var(--secondary-color);
 }
 .nav-links a {
     color: var(--main-color);
@@ -42,8 +52,27 @@ header {
     transition:all linear .2s;
     color: white;
 }
+.btn-white {
+    border: unset;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 800;
+    padding: 11px 30px 9px;
+    line-height: 30px;
+    height: auto;
+    text-transform: uppercase;
+    background: white;
+    transition: all linear .2s;
+    color: var(--secondary-color);
+    box-shadow: 5px 3px 13px 0 rgba(0, 0, 0, 0.1);
+}
 .btn-default:hover {
+    color: white;
     background: var(--main-color);
+}
+.btn-white:hover {
+    background: var(--secondary-color);
+    color:white;
 }
 h2 {
     line-height: 60px;
@@ -51,6 +80,13 @@ h2 {
     font-family: var(--font-paytone);
     color: var(--main-color);
     font-size: 42px;
+    margin-bottom: 20px;
+}
+h3 {
+    font-weight: 400;
+    font-family: var(--font-paytone);
+    color: var(--main-color);
+    font-size: 32px;
     margin-bottom: 20px;
 }
 h4 {
@@ -64,6 +100,9 @@ h6 {
     font-family: var(--font-paytone);
     color: var(--main-color);
     font-size: 14px;
+}
+.font-size-20{
+    font-size: 20px
 }
 input, select,textarea {
     height: 50px;
@@ -318,4 +357,137 @@ label{
 }
 .quantity{
     border: 0;
+}
+.menu-cart-count{
+    position:absolute;
+    top:50%;
+    left:-5px;
+    transform: translateY(-50%);
+    background: var(--secondary-color);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    color: white;
+    display:flex;
+    justify-content:center;
+    font-size:14px;
+    align-items:center;
+    z-index:0;
+}
+#dropdownMenuButton{
+    border:none;
+    background-color: transparent;
+}
+.no-arrow::after {
+    content: none !important;
+}
+
+.no-arrow {
+    background-image: none !important;
+}
+.menu-cart-svg{
+    transition: all linear .2s;
+}
+.menu-cart-svg:hover{
+    fill:var(--secondary-color);
+}
+.cart-menu {
+    box-shadow: 12px 9px 38px 0 rgba(0, 0, 0, 0.1);
+    border:none;
+}
+.dropdown-item .quantity{
+    color: var(--grey-color);
+    font-weight:bold;
+}
+.cart-menu .dropdown-item{
+    padding: .5rem 1.5rem;
+}
+.cart-menu .dropdown-item:hover{
+    background:unset;
+}
+.btn-close{
+    font-size:12px;
+}
+.cart-table {
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+    font-size: 18px;
+    border-collapse: collapse;
+    text-align: center;
+}
+.cart-table th {
+    padding: 0;
+    font-size: 18px;
+    line-height: 60px;
+    font-weight: 400;
+    color: #ffffff;
+    font-family: var(--font-paytone);
+}
+.cart-table thead tr{
+    border-radius: 5px;
+    background:var(--main-color);
+}
+.cart-table tr{
+  border-top: 1px solid #e5e5e5;
+}
+.cart-table tr:last-child{
+  border-bottom: 1px solid #e5e5e5;
+}
+.cart-table td{
+    padding: 25px 0;
+    text-align: left;
+    vertical-align:middle;
+    line-height: 1.5em;
+
+}
+
+.cart-table td:not(.cart-product-quantity){
+   font-family: var(--font-paytone);
+}
+td.product-thumbnail {
+    text-align: left;
+    white-space: nowrap;
+    width: 68px;
+    padding-left: 0;
+    min-width: 32px;
+}
+th.product-name {
+    padding-left: 30px;
+    text-align: left;
+}
+th.product-price {
+    text-align: left;
+    width: 240px;
+}
+th.product-quantity {
+    text-align: left;
+    width: 190px;
+}
+th.product-subtotal {
+    text-align: left;
+    width: 160px;
+}
+th.product-remove {
+    width: 80px;
+}
+td.product-name {
+    padding-left: 30px;
+    font-size: 18px;
+    font-weight: 400;
+    text-align:left;
+}
+.cart-total {
+    background: #ffffff;
+    float: right;
+    width: 400px;
+    margin-top: 45px;
+    margin-bottom: 60px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 4px 3px 9px 0 rgba(0, 0, 0, 0.1);
+}
+.table-cart-row{
+    transition: opacity .3s ease-out;
+    opacity: 1;
 }

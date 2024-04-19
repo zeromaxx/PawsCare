@@ -19,5 +19,16 @@ namespace PawsCare.Models
 					 .ThenInclude(ci => ci.Product)
 					 .FirstOrDefault(c => c.UserId == userId);
 		}
+		public decimal GetCartTotal(int userId)
+		{
+			var cart = GetCartForUser(userId);
+			if (cart?.CartItems == null || !cart.CartItems.Any())
+			{
+				return 0m;
+			}
+
+			return cart.CartItems.Sum(item => item.Quantity * item.Product.Price);
+		}
+
 	}
 }

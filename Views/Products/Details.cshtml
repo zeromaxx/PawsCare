@@ -30,7 +30,7 @@
 </div>
 <script>
 	const addToCartForm = document.getElementById("addToCartForm");
-	const quantity = document.querySelector('.quantity');
+	const quantity = document.getElementById('quantity');
 	const productId = document.getElementById('productId');
 	const minusButton = document.querySelector('.minus');
 	const plusButton = document.querySelector('.plus');
@@ -43,6 +43,7 @@
 	}
 
 	function increaseQuantity() {
+		
 		let currentQuantity = parseInt(quantity.textContent, 10);
 		quantity.textContent = currentQuantity + 1;
 	}

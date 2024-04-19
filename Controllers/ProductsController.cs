@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PawsCare.Data;
 using PawsCare.Interfaces;
+using PawsCare.Migrations;
 using PawsCare.Models;
 using PawsCare.Models.ViewModels;
 using System.Security.Claims;
@@ -17,12 +19,19 @@ namespace PawsCare.Controllers
             _context = context;
         }
 
-		public PartialViewResult getMenuList()
+		public PartialViewResult GetMenuList()
 		{
-            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            int parsedUserId = int.Parse(userId);
-            var cart = _cartService.GetCartForUser(parsedUserId);
-            return PartialView("_MenuPartial", cart);
+			var userId = GetUserId();
+
+			var cart = _cartService.GetCartForUser(userId);
+			var cartCount = _cartService.GetCartTotal(userId);
+
+			var viewModel = new CartViewModel
+			{
+				Cart = cart,
+				CartCount = cartCount
+			};
+			return PartialView("_MenuPartial", viewModel);
         }
         public IActionResult Details(int id)
         {
@@ -37,16 +46,15 @@ namespace PawsCare.Controllers
         [HttpPost]
         public IActionResult AddToCart([FromBody] ProductCartViewModel viewModel)
         {
-			string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-			int parsedUserId = int.Parse(userId);
+			var userId = GetUserId();
 
-			var cart = _context.Carts.FirstOrDefault(c => c.UserId == parsedUserId);
+			var cart = _context.Carts.FirstOrDefault(c => c.UserId == userId);
 
 			if (cart == null)
 			{
 				cart = new Cart
 				{
-					UserId = parsedUserId
+					UserId = userId
 				};
 				_context.Carts.Add(cart);
 				_context.SaveChanges();
@@ -73,5 +81,38 @@ namespace PawsCare.Controllers
 
 			return Json(new { success = true, message = "Product saved successfully!" });
 		}
-    }
+		public int GetUserId()
+		{
+			string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+			return int.Parse(userId);
+		}
+		public IActionResult RemoveItemFromCart(int productId, int cartId)
+		{
+			var userId = GetUserId();
+			var cartItem = _context.CartItems
+				.SingleOrDefault(ci => ci.ProductId == productId && ci.CartId == cartId);
+
+			if (cartItem == null)
+			{
+				return Json(new { success = false, message = "Cart item not found" });
+			}
+
+			_context.CartItems.Remove(cartItem);
+			_context.SaveChanges();
+
+			return Json(new { success = true, message = "Product removed successfully!" });
+		}
+		public IActionResult Cart()
+		{
+			Cart cart = new Cart();
+
+			if (User?.Identity?.IsAuthenticated == true)
+			{
+				var userId = GetUserId();
+				cart = _cartService.GetCartForUser(userId);
+			}
+
+			return View("Cart", cart);
+		}
+	}
 }
