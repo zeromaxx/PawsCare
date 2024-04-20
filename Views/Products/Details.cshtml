@@ -24,6 +24,7 @@
 					</div>
 					<button type="submit" class="btn-default">add to cart</button>
 				</form>
+				<p class="text-danger error-msg pt-2 text-end"></p>
 			</div>
 		</div>
 	</div>
@@ -66,7 +67,9 @@
 		})
 		.then(response => response.json())
 		.then(data => {
-			console.log(data);
+			if (data.success === false) {
+				document.querySelector('.error-msg').textContent = data.message;
+			}
 		})
 	})
 </script>

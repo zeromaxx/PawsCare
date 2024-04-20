@@ -288,6 +288,7 @@ label{
     align-items:center;
     justify-content:center;
     transition:all linear .2s;
+    cursor:pointer;
 }
 .cart-icon svg {
     fill:var(--secondary-color);
@@ -408,7 +409,7 @@ label{
 .btn-close{
     font-size:12px;
 }
-.cart-table {
+.cart-table, .checkout-table {
     border: 0;
     border-radius: 0;
     margin: 0;
@@ -416,7 +417,7 @@ label{
     border-collapse: collapse;
     text-align: center;
 }
-.cart-table th {
+.cart-table th{
     padding: 0;
     font-size: 18px;
     line-height: 60px;
@@ -424,7 +425,7 @@ label{
     color: #ffffff;
     font-family: var(--font-paytone);
 }
-.cart-table thead tr{
+.cart-table thead tr,.checkout-table thead tr{
     border-radius: 5px;
     background:var(--main-color);
 }
@@ -439,7 +440,6 @@ label{
     text-align: left;
     vertical-align:middle;
     line-height: 1.5em;
-
 }
 
 .cart-table td:not(.cart-product-quantity){
@@ -490,4 +490,94 @@ td.product-name {
 .table-cart-row{
     transition: opacity .3s ease-out;
     opacity: 1;
+}
+.checkmark {
+    font-size: 15px;
+    padding: 12px;
+    color: #FFFFFF;
+    background: var(--secondary-color);
+    border-radius: 5px;
+}
+.checkout-wrapper label{
+    font-weight:800;
+    font-size: 14px;
+    color:var(--main-color);
+    text-transform:uppercase;
+}
+.checkout-table tbody tr:last-child > * {
+    padding-bottom: 32px;
+}
+.checkout-table td{
+    padding-top: 12px;
+}
+.checkout-table tbody tr:first-child > * {
+    padding-top: 32px;
+}
+.checkout-table .product-quantity {
+    color: #999998;
+    font-weight: 800;
+}
+.checkout-table .amount {
+    font-size: 18px;
+    font-weight: 800;
+    color:var(--secondary-color);
+    text-align:center;
+}
+.checkout-table td.product-name + td.product-total {
+    text-align: center;
+    padding-right: 10px;
+}
+.checkout-table td.product-name {
+    display: block;
+    padding-right: 10px;
+    font-weight: 400;
+}
+.checkout-table thead th.product-total {
+    text-align: center;
+    padding-right: 10px;
+}
+.checkout-table tfoot th {
+    border-top: 1px solid #e5e5e5;
+}
+.checkout-table tfoot td{
+    border-top: 1px solid #e5e5e5;
+}
+.checkout-table tbody th {
+    padding: 0;
+    font-size: 18px;
+    line-height: 60px;
+    font-weight: 400;
+    color: var(--main-color);
+    font-family: var(--font-paytone);
+}
+.checkout-table tfoot tr th {
+    padding-left: 30px;
+    text-align: left;
+}
+.checkout-table thead th {
+    font-size: 18px;
+    line-height: 60px;
+    font-weight: 400;
+    color: #ffffff;
+    font-family: var(--font-paytone);
+}
+.checkout-table tfoot tr:first-child th {
+    padding-top: 36px;
+}
+.checkout-table tfoot tr:first-child td {
+    padding-top: 36px;
+}
+.checkout-payment {
+    border-radius: 10px;
+    border: unset;
+    padding: 30px;
+    background: #fcf9f4;
+    margin-top: 15px;
+}
+section{
+    height: calc(100vh - 80px);
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    flex-direction:column;
 }

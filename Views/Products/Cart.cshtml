@@ -35,10 +35,9 @@
 						<td class="cart-product-quantity">
 							<form id="addToCartForm" class="d-flex justify-content-between mt-4">
 								<div class="quantity-wrapper">
-									<span class="icon minus"></span>
+									<span class="icon minus minus-btn" data-product-id="@item.ProductId"></span>
 									<span class="quantity" id="quantity">@item?.Quantity</span>
-									<span class="icon plus"></span>
-									<input type="hidden" id="productId" value="@Model.Id" />
+									<span class="icon plus plus-btn" data-product-id="@item.ProductId"></span>
 								</div>
 							</form>
 						</td>
@@ -98,6 +97,52 @@ else
 						}, 500)
 					}
 				})
+		});
+	});
+
+	document.querySelectorAll('.plus-btn').forEach(button => {
+		button.addEventListener('click', function (e) {
+			e.preventDefault();
+			let productId = Number(this.getAttribute('data-product-id'));
+
+			fetch(`/Products/IncreaseCartQuantity?productId=${productId}`, {
+				method: "POST",
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			})
+				.then(response => response.json())
+				.then(data => {
+					if (data.success) {
+						setTimeout(() => {
+							window.location.reload();
+						}, 500)
+					}
+				})
+			
+		});
+	});
+
+	document.querySelectorAll('.minus-btn').forEach(button => {
+		button.addEventListener('click', function (e) {
+			e.preventDefault();
+			let productId = Number(this.getAttribute('data-product-id'));
+
+			fetch(`/Products/DecreaseCartQuantity?productId=${productId}`, {
+				method: "POST",
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			})
+				.then(response => response.json())
+				.then(data => {
+					if (data.success) {
+						setTimeout(() => {
+							window.location.reload();
+						}, 500)
+					}
+				})
+
 		});
 	});
 

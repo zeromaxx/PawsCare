@@ -1,0 +1,90 @@
+﻿@model PawsCare.Models.ViewModels.CheckoutViewModel
+@{
+	ViewData["Title"] = "Checkout";
+	ViewData["Banner1ImageUrl"] = "uploads/contact-banner.jpg";
+	decimal total = 0;
+}
+@await Html.PartialAsync("_Banner");
+<div class="checkout-wrapper mb-5">
+	<div class="container container-medium">
+		<div class="row">
+			<div class="col-md-6">
+				<h3>Billing Details</h3>
+				<div class="row no-gutters">
+					<div class="col-6 mb-3">
+						<label asp-for="Name" class="control-label"></label>
+						<input asp-for="Name" class="" />
+						<span asp-validation-for="Name" class="text-danger mt-1"></span>
+					</div>
+					<div class="col-6 mb-3">
+						<label asp-for="LastName" class="control-label"></label>
+						<input asp-for="LastName" class="" />
+						<span asp-validation-for="LastName" class="text-danger mt-1"></span>
+					</div>
+					<div class="col-12 mb-3">
+						<label asp-for="Country" class="control-label"></label>
+						<input asp-for="Country" class="" />
+						<span asp-validation-for="Country" class="text-danger mt-1"></span>
+					</div>
+					<div class="col-12 mb-3">
+						<label asp-for="Address" class="control-label"></label>
+						<input asp-for="Address" class="" />
+						<span asp-validation-for="Address" class="text-danger mt-1"></span>
+					</div>
+					<div class="col-12">
+						<label>Additional information</label>
+						<textarea asp-for="Notes" class="" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
+						<span asp-validation-for="Notes" class="text-danger mt-1"></span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<h3>Your Order</h3>
+				<table class="checkout-table w-100">
+					<thead>
+						<tr>
+							<th class="product-name">Product</th>
+							<th class="product-total">Subtotal</th>
+						</tr>
+					</thead>
+					<tbody>
+						@if (Model.Cart.CartItems != null && Model.Cart.CartItems.Any())
+						{
+							@foreach (var item in Model.Cart.CartItems)
+							{
+								{
+									total += item.Product.Price * item.Quantity;
+								}
+								<tr class="cart_item">
+									<td class="product-name">
+										@item.Product.Name &nbsp;<strong class="product-quantity">×&nbsp;@item.Quantity</strong>
+									</td>
+									<td class="product-total">
+										<span class="amount"><span class="">&euro; </span>@item.Product.Price</span>
+									</td>
+								</tr>
+							}
+						}
+						
+					</tbody>
+					<tfoot>
+
+						<tr class="order-total">
+							<th class="main-color">Total</th>
+							<td>
+								<strong>
+									<span class="amount"><span class="">&euro; </span>@total</span>
+								</strong>
+							</td>
+						</tr>
+
+					</tfoot>
+				</table>
+				<div class="checkout-payment">
+					<p>Your personal data will be used to process your order, support your experience throughout this website</p>
+					<button class="btn-default">place order</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
