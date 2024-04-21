@@ -40,15 +40,18 @@
                                         <a class="nav-link @(Context.Request.Path == "/User/Login" ? "active-page" : "")" asp-controller="User" asp-action="Login">Login</a>
                                     </li>
                                 }
+                                <li class="nav-item list-unstyled">
+                                    <a class="nav-link @(Context.Request.Path == "/Home/Contacts" ? "active-page" : "")" asp-controller="Home" asp-action="Contacts">Contacts</a>
+                                </li>
                                 @if (User?.Identity?.IsAuthenticated ?? true)
                                 {
+                                    <li class="nav-item list-unstyled">
+                                        <a class="nav-link" asp-controller="User" asp-action="Orders">My Orders</a>
+                                    </li>
                                     <li class="nav-item list-unstyled">
                                         <a class="nav-link" asp-controller="User" asp-action="Logout">Logout</a>
                                     </li>
                                 }
-                                <li class="nav-item list-unstyled">
-                                    <a class="nav-link @(Context.Request.Path == "/Home/Contacts" ? "active-page" : "")" asp-controller="Home" asp-action="Contacts">Contacts</a>
-                                </li>
                             </ul>
                         </div>
                     </div>

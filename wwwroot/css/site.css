@@ -20,11 +20,15 @@ header {
 .container.container-medium {
     max-width: 1170px;
 }
+
 .main-color {
     color: var(--main-color);
 }
 .secondary-color{
     color:var(--secondary-color);
+}
+.font-paytone{
+    font-family: var(--font-paytone);
 }
 .nav-links a {
     color: var(--main-color);
@@ -103,6 +107,12 @@ h6 {
 }
 .font-size-20{
     font-size: 20px
+}
+.font-size-14 {
+    font-size: 14px
+}
+.font-size-16 {
+    font-size: 16px
 }
 input, select,textarea {
     height: 50px;
@@ -410,7 +420,7 @@ label{
 .btn-close{
     font-size:12px;
 }
-.cart-table, .checkout-table {
+.cart-table, .checkout-table, .orders-table {
     border: 0;
     border-radius: 0;
     margin: 0;
@@ -418,7 +428,7 @@ label{
     border-collapse: collapse;
     text-align: center;
 }
-.cart-table th{
+.cart-table th, .orders-table th{
     padding: 0;
     font-size: 18px;
     line-height: 60px;
@@ -426,12 +436,16 @@ label{
     color: #ffffff;
     font-family: var(--font-paytone);
 }
-.cart-table thead tr,.checkout-table thead tr{
+.cart-table thead tr,.checkout-table thead tr ,.orders-table thead tr{
     border-radius: 5px;
     background:var(--main-color);
 }
 .cart-table tr{
   border-top: 1px solid #e5e5e5;
+}
+.orders-table tr:nth-child(2n) {
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
 }
 .cart-table tr:last-child{
   border-bottom: 1px solid #e5e5e5;
@@ -596,4 +610,11 @@ td.product-name {
     border-radius: 5px;
     text-align: center;
     padding: 10px;
+}
+.orders-table td{
+    padding: 20px 0;
+}
+.orders-table .product-quantity {
+    color: #999998;
+    font-weight: 800;
 }

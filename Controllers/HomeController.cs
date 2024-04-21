@@ -63,6 +63,7 @@ namespace PawsCare.Controllers
 				Cart = cart,
 				CartCount = cartCount
 			};
+			ViewBag.ShowModal = TempData["ShowModal"] ?? false;
 			return View(viewModel);
 		}
 

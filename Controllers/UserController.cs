@@ -110,6 +110,47 @@ namespace PawsCare.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+        public int GetUserId()
+        {
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            return int.Parse(userId);
+        }
+        [Authorize]
+        public IActionResult Orders()
+        {
+            List<dynamic> ordersWithDetails = new List<dynamic>();
+            if (User?.Identity?.IsAuthenticated == true)
+            {
+                var userId = GetUserId();
 
+                 ordersWithDetails = _context.Orders
+                    .Include(o => o.OrderItems)
+                    .ThenInclude(oi => oi.Product)
+                    .Where(o => o.UserId == userId)
+                    .Select(o => new
+                    {
+                        OrderId = o.OrderId,
+                        OrderDate = o.OrderDate,
+                        CustomerName = o.CustomerName,
+                        Country = o.Country,
+                        Address = o.Address,
+                        Notes = o.Notes,
+                        Items = o.OrderItems.Select(oi => new
+                        {
+                            OrderItemId = oi.OrderItemId,
+                            Quantity = oi.Quantity,
+                            Price = oi.Price,
+                            ProductId = oi.ProductId,
+                            ProductName = oi.Product.Name,
+                            ProductPrice = oi.Product.Price,
+                            ProductDescription = oi.Product.Description,
+                            ProductImagePath = oi.Product.ImagePath
+                        }).ToList()
+                    })
+                    .ToList().Cast<dynamic>().ToList();
+            }
+          
+            return View(ordersWithDetails);
+        }
     }
 }

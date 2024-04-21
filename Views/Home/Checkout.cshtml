@@ -3,6 +3,7 @@
 	ViewData["Title"] = "Checkout";
 	ViewData["Banner1ImageUrl"] = "uploads/contact-banner.jpg";
 	decimal total = 0;
+	bool showModal = ViewBag.ShowModal;
 }
 @await Html.PartialAsync("_Banner");
 <div class="checkout-wrapper mb-5">
@@ -11,7 +12,7 @@
 			<div class="col-md-6">
 				<h3>Billing Details</h3>
 				<div>
-					<form class="row no-gutters" action="/Products/PlaceOrder">
+					<form class="row no-gutters" action="/Products/PlaceOrder" method="post">
 						<div class="col-6 mb-3">
 							<label asp-for="Name" class="control-label"></label>
 							<input asp-for="Name" class="" />
@@ -37,11 +38,13 @@
 							<textarea asp-for="Notes" class="" placeholder="Notes about your order, e.g. special notes for delivery"></textarea>
 							<span asp-validation-for="Notes" class="text-danger mt-1"></span>
 						</div>
-
-						<div class="checkout-payment">
-							<p>Your personal data will be used to process your order, support your experience throughout this website</p>
-							<button type="submit" class="btn-default">place order</button>
-						</div>
+						@if (Model.Cart.CartItems != null && Model.Cart.CartItems.Any())
+						{
+							<div class="checkout-payment">
+								<p>Your personal data will be used to process your order, support your experience throughout this website</p>
+								<button type="submit" class="btn-default">place order</button>
+							</div>
+						}
 					</form>
 				</div>
 			</div>
@@ -91,3 +94,31 @@
 		</div>
 	</div>
 </div>
+
+<div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header border-0">
+				<h5 class="modal-title" id="confirmationModalLabel">Order Confirmation</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<p>We're thrilled to confirm your recent order with us. Your purchase is now being processed with care.</p>
+			</div>
+			<div class="modal-footer border-0">
+				<a href="@Url.Action("Index", "Home")" class="btn-default">Return to Home</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<script>
+		$(document).ready(function() {
+			var showModal = @showModal.ToString().ToLower();
+			if (showModal) {
+				$('#confirmationModal').modal('show');
+			}
+		});
+	</script>
+}
