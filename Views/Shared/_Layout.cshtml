@@ -16,18 +16,18 @@
     @using Microsoft.AspNetCore.Http
     @using System.Security.Claims
     @inject IHttpContextAccessor HttpContextAccessor
-    <header>
+    <header class="d-lg-block d-none">
         <nav class="bg-white">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-3">
                         <a class="navbar-brand" asp-controller="Home" asp-action="Index">
                             <img src="~/uploads/logo-header.png" style="height:80px;" />
                         </a>
                     </div>
-                    <div class="col-4">
+                    <div class="col-6">
                         <div class="nav-links h-100">
-                            <ul class="m-0 p-0 d-flex h-100 align-items-center">
+                            <ul class="m-0 p-0 d-flex h-100 align-items-center justify-content-center">
                                 <li class="nav-item list-unstyled">
                                     <a class="nav-link @(Context.Request.Path == "/" ? "active-page" : "")" asp-controller="Home" asp-action="Index">Home</a>
                                 </li>
@@ -55,14 +55,45 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-4 d-flex align-items-center">
+                    <div class="col-3 d-flex align-items-center justify-content-end">
                         @await Component.InvokeAsync("Menu")
                     </div>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="">
+
+    <header class="d-lg-none d-block mobile-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-6">
+                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                        <img src="~/uploads/mobile-logo.png" style="height:80px;" />
+                    </a>
+                </div>
+                <div class="col-6">
+                    <div class="d-flex justify-content-end align-items-center h-100">
+                        <svg id="toggleButton" width="24" height="24" fill="white" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <style>
+                                    .cls-1 {
+                                        fill: none;
+                                    }</style>
+                            </defs>
+                            <title />
+                            <g data-name="Layer 2"><path d="M28,10H4A1,1,0,0,1,4,8H28a1,1,0,0,1,0,2Z" /><path d="M28,17H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z" /><path d="M28,24H4a1,1,0,0,1,0-2H28a1,1,0,0,1,0,2Z" /></g>
+                            <g id="frame"><rect class="cls-1" height="32" width="32" /></g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div id="sidebar" class="sidebar">
+        <!-- Add your sidebar content here -->
+        <p>Hello, I'm a sidebar!</p>
+    </div>
+    <div>
         <main role="main">
             @RenderBody()
         </main>

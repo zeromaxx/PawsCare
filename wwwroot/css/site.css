@@ -7,6 +7,7 @@
 
 body {
     font-family: "Nunito", sans-serif;
+    padding-top: 80px;
 }
 
 a {
@@ -15,6 +16,12 @@ a {
 
 header {
     box-shadow: 6px 6px 9px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    width:100%;
+    top:0;
+    left:0;
+    height:80px;
+    z-index:100;
 }
 
 .container.container-small {
@@ -185,14 +192,14 @@ label {
     position: absolute;
 }
 
-    .banner-content h1 {
-        font-size: 60px;
-        color: white;
-        line-height: 70px;
-        letter-spacing: -0.01em;
-        font-family: var(--font-paytone);
-        font-weight: 400;
-    }
+.banner-content h1 {
+    font-size: 60px;
+    color: white;
+    line-height: 70px;
+    letter-spacing: -0.01em;
+    font-family: var(--font-paytone);
+    font-weight: 400;
+}
 
 .infobox svg {
     position: relative;
@@ -732,20 +739,73 @@ td.product-name {
     z-index: 1;
     transition: background linear .3s;
 }
-.infobox-container:hover {
-   background: var(--secondary-color);
+
+    .infobox-container:hover {
+        background: var(--secondary-color);
+    }
+
+    .infobox-container:before {
+        content: "";
+        position: absolute;
+        background-image: url("../uploads/info-box.png");
+        background-position: 80% 29%;
+        background-repeat: no-repeat;
+        background-size: auto;
+        z-index: -1;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+@media (max-width:768px){
+.home-hero-img-wrapper h1{
+    font-size: 42px;
 }
 
-.infobox-container:before {
-    content: "";
-    position: absolute;
-    background-image: url("../uploads/info-box.png");
-    background-position: 80% 29%;
-    background-repeat: no-repeat;
-    background-size: auto;
-    z-index: -1;
+.banner-content h1{
+    font-size:36px;
+    line-height:1;
+}
+.banner-content {
+    width: 100%;
+    text-align: center;
+}
+.infobox-container{
+    padding: 13px 30px 10px 26px;
+}
+
+}
+@media (max-width:1200px) {
+
+.infobox-container {
+    padding: 8px 25px 8px 20px;
+}
+.infobox-container a{
+    font-size: 13px;
+}
+}
+.mobile-header {
+    background-color: rgba(35,30,28,1);
+    color: #ffffff;
+    box-shadow: 6px 6px 9px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    width: 100%;
     top: 0;
-    right: 0;
-    bottom: 0;
     left: 0;
+    height: 80px;
+    z-index: 100;
+}
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    background-color: #201B17;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    color: white;
 }
