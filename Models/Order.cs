@@ -1,4 +1,6 @@
-﻿namespace PawsCare.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace PawsCare.Models
 {
     public class Order
     {
@@ -8,6 +10,10 @@
         public string? Country { get; set; }
         public string? Address { get; set; }
         public string? Notes { get; set; }
-        public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+        public int? UserId { get; set; }
+
+		[ForeignKey("UserId")]
+        public User? User { get; set; }
+		public List<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
     }
 }

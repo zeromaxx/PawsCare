@@ -23,7 +23,9 @@
 					<div class="dropdown-item">
 						<div class="d-flex gap-3 w-100">
 							<div>
-								<img src="~/uploads/@item.Product.ImagePath" width="75" height="75" />
+								<a href="/Products/Details/@item.Product.Id">
+									<img src="~/uploads/@item.Product.ImagePath" width="75" height="75" />
+								</a>
 							</div>
 							<div class="d-flex justify-content-center flex-column w-100">
 								<a href="/Products/Details/@item.Product.Id">
@@ -35,7 +37,7 @@
 								</div>
 							</div>
 							<div class="d-flex align-items-center">
-								<button class="btn-close"></button>
+								<button data-product-id="@item.Product.Id" data-cart-id="@item.Cart.Id" class="btn-close remove-nav-cart-btn"></button>
 							</div>
 						</div>
 					</div>
@@ -59,3 +61,27 @@
 		}
 	</ul>
 </div>
+<script>
+	document.querySelectorAll('.remove-nav-cart-btn').forEach(button => {
+		button.addEventListener('click', function (e) {
+			e.preventDefault();
+			const productId = Number(this.getAttribute('data-product-id'));
+			const cartId = Number(this.getAttribute('data-cart-id'));
+
+			fetch(`/Products/RemoveItemFromCart?productId=${productId}&cartId=${cartId}`, {
+				method: "POST",
+				headers: {
+					'Content-Type': 'application/json',
+				},
+			})
+				.then(response => response.json())
+				.then(data => {
+					if (data.success) {
+						setTimeout(() => {
+							window.location.reload();
+						}, 100)
+					}
+				})
+		});
+	});
+</script>

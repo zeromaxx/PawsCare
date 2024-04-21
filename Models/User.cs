@@ -15,6 +15,7 @@ namespace PawsCare.Models
         [Required]
         public string Email { get; set; } = string.Empty;
 		public List<Cart> Carts { get; set; } = new List<Cart>();
-       
+		public List<Order> Orders { get; set; } = new List<Order>();
+
 	}
 }

@@ -70,6 +70,11 @@
 			if (data.success === false) {
 				document.querySelector('.error-msg').textContent = data.message;
 			}
+			if (data.success === true) {
+				setTimeout(() => {
+					window.location.reload();
+				}, 100)
+			}
 		})
 	})
 </script>

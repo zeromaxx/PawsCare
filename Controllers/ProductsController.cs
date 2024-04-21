@@ -160,5 +160,45 @@ namespace PawsCare.Controllers
 
             return Json(new { success = true, message = "Quantity decreased!" });
         }
-    }
+
+        public IActionResult PlaceOrder(CheckoutViewModel viewModel)
+        {
+			var userId = GetUserId();
+
+			var cartId = _context.Carts.Where(u => u.UserId == userId).Select(u => u.Id).FirstOrDefault();
+
+			var cartItemsWithProducts =  _context.Carts
+	            .Include(cart => cart.CartItems) 
+	            .ThenInclude(cartItem => cartItem.Product)
+	            .Where(cart => cart.UserId == userId)
+	            .SelectMany(cart => cart.CartItems, (cart, cartItem) => new
+	            {
+		            CartId = cart.Id,
+		            CartItemId = cartItem.CartId,
+		            ProductId = cartItem.ProductId,
+		            ProductName = cartItem.Product.Name,
+		            ProductPrice = cartItem.Product.Price,
+		            ProductDescription = cartItem.Product.Description,
+		            ProductImagePath = cartItem.Product.ImagePath,
+		            Quantity = cartItem.Quantity
+	            })
+		        .ToList();
+
+			var order = new Order 
+            {
+                Address = viewModel.Address,
+                Country = viewModel.Country,
+                CustomerName = viewModel.Name + viewModel.LastName,
+                OrderDate = DateTime.Now,
+                Notes = viewModel.Notes,
+                UserId = userId,
+            };
+
+            _context.Orders.Add(order);
+            _context.SaveChanges();
+
+            return View("Checkout");
+        }
+
+	}
 }
