@@ -722,9 +722,12 @@ td.product-name {
 }
 
 .orders-table td {
+    border-bottom-width: 0px;
     padding: 20px 0;
 }
-
+.cart-table tr{
+    border-style:double;
+}
 .orders-table .product-quantity {
     color: #999998;
     font-weight: 800;
@@ -795,6 +798,7 @@ td.product-name {
     left: 0;
     height: 80px;
     z-index: 100;
+
 }
 .sidebar {
     height: 100%;
@@ -808,4 +812,43 @@ td.product-name {
     transition: 0.5s;
     padding-top: 60px;
     color: white;
+}
+.sidebarCloseBtn {
+    top: 15px;
+    position: absolute;
+    right: 12px;
+}
+.sidebar a{
+    font-family: var(--font-paytone);
+    font-weight: 400;
+    color: white;
+}
+.sidebar li {
+padding-bottom:12px;
+}
+.sidebar a.active-page {
+    color: var(--secondary-color) !important;
+}
+#toggleButton{
+    cursor:pointer;
+}
+@media (max-width:991px){
+    .orders-table td, .orders-table th {
+        white-space: nowrap;
+    }
+    .orders-table td{
+        padding: 20px 10px;
+    }
+    .orders-table th{
+        font-size: 14px;
+        padding: 0 12px;
+    }
+    .cart-table td {
+        white-space: nowrap;
+        padding-right: 30px
+    }
+    .cart-total {
+        float:unset;
+        width:auto;
+    }
 }

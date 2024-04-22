@@ -7,4 +7,8 @@
             $("#sidebar").width('100%');
         }
     });
+
+    $('.sidebarCloseBtn').on('click', function () {
+        $("#sidebar").width(0);
+    })
 });

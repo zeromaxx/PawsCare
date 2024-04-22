@@ -4,52 +4,54 @@
 	ViewData["Banner1ImageUrl"] = "uploads/banner.jpg";
 	decimal total = 0;
 }
-@await Html.PartialAsync("_Banner");
+@await Html.PartialAsync("_Banner")
 @if (Model.CartItems != null && Model.CartItems.Any())
 {
 	<div class="container container-medium mt-2">
-		<table class="cart-table w-100">
-			<thead>
-				<tr>
-					<th class="product-name" colspan="2">Product</th>
-					<th class="product-price">Price</th>
-					<th class="product-quantity">Quantity</th>
-					<th class="product-subtotal">Subtotal</th>
-					<th class="product-remove">&nbsp;</th>
-				</tr>
-			</thead>
-			<tbody id="tbody-id">
-				@foreach (var item in Model.CartItems)
-				{
-					{
-						total += item.Product.Price * item.Quantity;
-					}
-					<tr class="table-cart-row">
-						<td class="product-thumbnail">
-							<img src="~/uploads/@item?.Product?.ImagePath" width="75" height="75" />
-						</td>
-						<td class="product-name">
-							@item?.Product?.Name
-						</td>
-						<td class="secondary-color">&euro;<span class="ms-1">@item?.Product?.Price</span></td>
-						<td class="cart-product-quantity">
-							<form id="addToCartForm" class="d-flex justify-content-between mt-4">
-								<div class="quantity-wrapper">
-									<span class="icon minus minus-btn" data-product-id="@item.ProductId"></span>
-									<span class="quantity" id="quantity">@item?.Quantity</span>
-									<span class="icon plus plus-btn" data-product-id="@item.ProductId"></span>
-								</div>
-							</form>
-						</td>
-
-						<td class="secondary-color">&euro; @(item?.Product?.Price * item?.Quantity)</td>
-						<td class="text-center">
-							<button class="btn-close removeCartProductBtn" data-cart-id="@item.CartId" data-product-id="@item.ProductId"></button>
-						</td>
+		<div class="table-responsive">
+			<table class="cart-table table table w-100">
+				<thead>
+					<tr>
+						<th class="product-name" colspan="2">Product</th>
+						<th class="product-price">Price</th>
+						<th class="product-quantity">Quantity</th>
+						<th class="product-subtotal">Subtotal</th>
+						<th class="product-remove">&nbsp;</th>
 					</tr>
-				}
-			</tbody>
-		</table>
+				</thead>
+				<tbody id="tbody-id">
+					@foreach (var item in Model.CartItems)
+					{
+						{
+							total += item.Product.Price * item.Quantity;
+						}
+						<tr class="table-cart-row">
+							<td class="product-thumbnail">
+								<img src="~/uploads/@item?.Product?.ImagePath" width="75" height="75" />
+							</td>
+							<td class="product-name">
+								@item?.Product?.Name
+							</td>
+							<td class="secondary-color">&euro;<span class="ms-1">@item?.Product?.Price</span></td>
+							<td class="cart-product-quantity">
+								<form id="addToCartForm" class="d-flex justify-content-between mt-4">
+									<div class="quantity-wrapper">
+										<span class="icon minus minus-btn" data-product-id="@item.ProductId"></span>
+										<span class="quantity" id="quantity">@item?.Quantity</span>
+										<span class="icon plus plus-btn" data-product-id="@item.ProductId"></span>
+									</div>
+								</form>
+							</td>
+
+							<td class="secondary-color">&euro; @(item?.Product?.Price * item?.Quantity)</td>
+							<td class="text-center">
+								<button class="btn-close removeCartProductBtn" data-cart-id="@item.CartId" data-product-id="@item.ProductId"></button>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
 		<div class="cart-total">
 			<h3 class="mb-0">Cart Total</h3>
 			<div class="d-flex justify-content-between pt-3 pb-3">
