@@ -817,6 +817,7 @@ td.product-name {
     top: 15px;
     position: absolute;
     right: 12px;
+    cursor:pointer;
 }
 .sidebar a{
     font-family: var(--font-paytone);
